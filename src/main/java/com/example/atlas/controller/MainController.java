@@ -11,4 +11,24 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "auth";
+    }
+
+    @GetMapping("/signup")
+    public String signup() {
+        return "auth";
+    }
+
+    @GetMapping("/practice")
+    public String practice() {
+        return "practice";
+    }
+
 }

@@ -8,15 +8,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin=""/>
-    <title>Atlas</title>
+
+    <title>Atlas - Learn maps effectively</title>
 </head>
 <body>
-    <nav class="nav navbar-expand-lg navbar-dark bg-dark text-white mb-5 py-1">
-        <div class="container">
-            <a class="navbar-brand" href="#">Atlas</a>
-            <a class="float-right" href="#">Log out</a>
-        </div>
-    </nav>
+    <nav th:replace="layout :: nav"></nav>
 
     <div class="container text-center">
         <h3 class="mb-4">Select <span id="country">Czechia</span></h3>

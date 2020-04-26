@@ -1,3 +1,5 @@
+import { data } from "./countries-data.js";
+
 // Values
 const mapUrl = 'mapbox://styles/dheiskdie/ck9gqaprj0knl1io05o41ad01/draft';
 const centerCoordinates = [52.27, 21.09];

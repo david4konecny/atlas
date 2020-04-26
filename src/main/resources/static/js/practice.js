@@ -1,17 +1,18 @@
 import { data } from "./countries-data.js";
 
-// Values
+// Constants
 const mapUrl = 'mapbox://styles/dheiskdie/ck9gqaprj0knl1io05o41ad01/draft';
-const centerCoordinates = [52.27, 21.09];
-const lowerLeftBound = [35.85, -12.3];
+const centerCoordinates = [49.78, 20.74];
+const lowerLeftBound = [32.03, -18.9];
 const higherUpperBound = [71.86, 60.82];
 
 // Map properties
 const options = {
     center: centerCoordinates,
-    zoom: 4,
-    minZoom: 3,
-    maxZoom: 5,
+    zoom: 3.5,
+    minZoom: 3.5,
+    maxZoom: 5.5,
+    zoomSnap: 0.5,
     zoomControl: false,
     maxBounds: [lowerLeftBound, higherUpperBound],
     maxBoundsViscosity: 1.0
@@ -29,3 +30,14 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoiZGhlaXNrZGllIiwiYSI6ImNrOWdxNXVqZDA1ZjgzaG13YmQ3bzM2OHAifQ.3AfNGBc9QHBjGU1xNnuy2w'
 }).addTo(map);
 
+// Style geojson
+function style(feature) {
+    return {
+        weight: 1,
+        fillOpacity: 0.0
+    };
+}
+
+// Add geojson
+const geoData = L.geoJson(data, {style: style});
+geoData.addTo(map);

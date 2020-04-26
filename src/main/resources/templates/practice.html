@@ -15,6 +15,7 @@
     <nav th:replace="layout :: nav"></nav>
 
     <div class="container text-center">
+        <p th:text="${param.map}"></p>
         <h3 class="mb-4">Select <span id="country">Czechia</span></h3>
         <div id="map" class="mx-auto mb-4" style="width: 75%; height: 450px;">
         </div>
@@ -23,6 +24,9 @@
         <a class="btn btn-outline-secondary mx-1" href="#">Quit practice</a>
     </div>
 
+    <script th:inline="javascript">
+        const selectedMap = [[${param.map[0]}]];
+    </script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>

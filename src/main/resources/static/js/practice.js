@@ -1,4 +1,5 @@
 import { data } from "./countries-data.js";
+import { countriesByRegion } from "./countries-by-region.js";
 
 // Constants
 const mapUrl = 'mapbox://styles/dheiskdie/ck9gqaprj0knl1io05o41ad01/draft';
@@ -70,3 +71,8 @@ function onEachCountry(feature, layer) {
 // Init geoJSON layer
 geoLayer = L.geoJson(data, {style: style, onEachFeature: onEachCountry});
 geoLayer.addTo(map);
+
+// Init countries to practice
+const countriesToPractice = countriesByRegion[selectedMap];
+
+console.log(countriesToPractice);

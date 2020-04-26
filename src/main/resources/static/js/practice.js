@@ -61,18 +61,31 @@ function resetHighlight(e) {
     geoLayer.resetStyle(e.target);
 }
 
-function onEachCountry(feature, layer) {
-    layer.on({
-        mouseover: highlightCountry,
-        mouseout: resetHighlight
-    })
+
+
+// Get countries to practice
+const countriesToReview = countriesByRegion[selectedMap];
+console.log(countriesToReview);
+
+
+// Init practice
+let countriesLeft = countriesToReview.length;
+let targetCountry = countriesToReview[0];
+document.querySelector('#country').textContent = countriesToReview[0];
+
+// Click listener
+function checkAnswer(e) {
+    const layer = e.target;
+    console.log(layer.feature.properties.name);
 }
 
 // Init geoJSON layer
+function onEachCountry(feature, layer) {
+    layer.on({
+        mouseover: highlightCountry,
+        mouseout: resetHighlight,
+        click: checkAnswer,
+    })
+}
 geoLayer = L.geoJson(data, {style: style, onEachFeature: onEachCountry});
 geoLayer.addTo(map);
-
-// Init countries to practice
-const countriesToPractice = countriesByRegion[selectedMap];
-
-console.log(countriesToPractice);

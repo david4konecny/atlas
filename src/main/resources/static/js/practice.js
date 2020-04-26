@@ -39,5 +39,34 @@ function style(feature) {
 }
 
 // Add geojson
-const geoData = L.geoJson(data, {style: style});
-geoData.addTo(map);
+let geoLayer;
+
+// Define listeners
+function highlightCountry(e) {
+    const layer = e.target;
+
+    layer.setStyle({
+        weight: 3,
+        color: '#666',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+    }
+}
+
+function resetHighlight(e) {
+    geoLayer.resetStyle(e.target);
+}
+
+function onEachCountry(feature, layer) {
+    layer.on({
+        mouseover: highlightCountry,
+        mouseout: resetHighlight
+    })
+}
+
+// Init geoJSON layer
+geoLayer = L.geoJson(data, {style: style, onEachFeature: onEachCountry});
+geoLayer.addTo(map);

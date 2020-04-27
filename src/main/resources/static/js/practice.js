@@ -61,8 +61,18 @@ function resetHighlight(e) {
     geoLayer.resetStyle(e.target);
 }
 
-// Get countries to practice
-const countriesToReview = countriesByRegion[selectedMap];
+// Get countries to practice (practice items due + new countries)
+const today = new Date().toISOString().substring(0, 10); // E.g 2020-04-27
+const practicedItems = practiceItems.map(i => i.country); // Countries already practiced
+const countriesDue = practiceItems.filter(i => i.nextReview <= today).map(i => i.country); // Countries due for practice
+console.log('Countries due:');
+console.log(countriesDue);
+const countriesInRegion = countriesByRegion[selectedRegion] // All countries in the region
+const countriesNotPracticed = countriesInRegion.filter(i => !practicedItems.includes(i));
+console.log('Countries new:');
+console.log(countriesNotPracticed);
+const countriesToReview = countriesDue.concat(countriesNotPracticed);
+console.log('Countries to review:')
 console.log(countriesToReview);
 
 function onCorrectAnswer() {

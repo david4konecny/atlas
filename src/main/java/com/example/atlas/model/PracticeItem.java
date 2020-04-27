@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class PracticeItem {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String countryCode;
+    private String country;
     private String region;
     private Integer memoryStrength;
     private LocalDate nextReview;
@@ -18,8 +18,8 @@ public class PracticeItem {
     public PracticeItem() {
     }
 
-    public PracticeItem(String countryCode, String region, LocalDate nextReview) {
-        this.countryCode = countryCode;
+    public PracticeItem(String country, String region, LocalDate nextReview) {
+        this.country = country;
         this.memoryStrength = 0;
         this.region = region;
         this.nextReview = nextReview;
@@ -33,12 +33,12 @@ public class PracticeItem {
         this.id = id;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getRegion() {
@@ -69,7 +69,7 @@ public class PracticeItem {
     public String toString() {
         return "PracticeItem{" +
                 "id=" + id +
-                ", countryCode='" + countryCode + '\'' +
+                ", countryCode='" + country + '\'' +
                 ", region='" + region + '\'' +
                 ", memoryStrength=" + memoryStrength +
                 ", nextReview=" + nextReview +

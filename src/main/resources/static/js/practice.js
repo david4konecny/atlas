@@ -67,6 +67,7 @@ console.log(countriesToReview);
 
 function onCorrectAnswer() {
     countriesLeft--;
+    document.querySelector('#countries-left').textContent = countriesLeft;
     countriesToReview.pop();
     promptNextCountry();
 }
@@ -77,9 +78,15 @@ function promptNextCountry() {
     if (countriesLeft > 0) {
         targetCountry = countriesToReview[countriesLeft - 1];
         document.querySelector('#country').textContent = targetCountry;
+    } else {
+        showCongratsScreen();
     }
 }
 
+function showCongratsScreen() {
+    document.querySelector('.map-area').style.display = 'none';
+    document.querySelector('.finished-message').style.display = 'block';
+}
 
 // Click listener
 function checkAnswer(e) {
@@ -103,4 +110,5 @@ geoLayer = L.geoJson(data, {style: style, onEachFeature: onEachCountry});
 geoLayer.addTo(map);
 
 // Init practice
+document.querySelector('#countries-left').textContent = countriesLeft;
 promptNextCountry();

@@ -15,4 +15,8 @@ public class PracticeService {
         practiceRepository.saveAll(items);
     }
 
+    public List<PracticeItem> getPracticeByRegion(String region) {
+        return practiceRepository.getPracticeByRegion(region);
+    }
+
 }

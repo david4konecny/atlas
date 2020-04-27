@@ -19,7 +19,6 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         addSampleData();
-        System.out.println(practiceService.getPracticeByRegion("europe"));
     }
 
     private void addSampleData() {

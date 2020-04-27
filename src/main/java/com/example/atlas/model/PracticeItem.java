@@ -64,4 +64,15 @@ public class PracticeItem {
     public void setNextReview(LocalDate nextReview) {
         this.nextReview = nextReview;
     }
+
+    @Override
+    public String toString() {
+        return "PracticeItem{" +
+                "id=" + id +
+                ", countryCode='" + countryCode + '\'' +
+                ", region='" + region + '\'' +
+                ", memoryStrength=" + memoryStrength +
+                ", nextReview=" + nextReview +
+                '}';
+    }
 }

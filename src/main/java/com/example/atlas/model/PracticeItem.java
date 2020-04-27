@@ -20,7 +20,7 @@ public class PracticeItem {
 
     public PracticeItem(String country, String region, LocalDate nextReview) {
         this.country = country;
-        this.memoryStrength = 0;
+        this.memoryStrength = 1;
         this.region = region;
         this.nextReview = nextReview;
     }

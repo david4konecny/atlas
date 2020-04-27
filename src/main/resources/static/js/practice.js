@@ -92,7 +92,7 @@ function onCorrectAnswer() {
         let id = practiceItems.find(i => i.country === targetCountry).id;
         increaseMemoryStrength(id);
     } else {
-        // TODO: send request to add item to db
+        addNewPracticeItem(targetCountry, selectedRegion);
     }
     promptNextCountry();
 }
@@ -158,17 +158,23 @@ function setUpButtonListener() {
 }
 
 function increaseMemoryStrength(id) {
-    console.log('Sending request');
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', '/practice/item/increase/' + id);
     xhr.send();
 }
 
 function resetMemoryStrength(id) {
-    console.log('Sending request');
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', '/practice/item/reset/' + id);
     xhr.send();
+}
+
+function addNewPracticeItem(country, region) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/practice/item/add');
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    const data = `country=${country}&region=${region}`;
+    xhr.send(data);
 }
 
 // Init geoJSON layer

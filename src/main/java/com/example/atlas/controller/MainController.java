@@ -53,4 +53,10 @@ public class MainController {
         practiceService.resetMemoryStrength(id);
     }
 
+    @ResponseBody
+    @PostMapping("/practice/item/add")
+    public void addPracticeItem(@RequestParam String country, @RequestParam String region) {
+        practiceService.addPracticeItem(country, region);
+    }
+
 }

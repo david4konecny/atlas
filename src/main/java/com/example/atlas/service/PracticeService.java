@@ -5,6 +5,7 @@ import com.example.atlas.repository.PracticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -28,6 +29,11 @@ public class PracticeService {
     public void resetMemoryStrength(Long id) {
         PracticeItem item = practiceRepository.getOne(id);
         item.setMemoryStrength(0);
+        practiceRepository.save(item);
+    }
+
+    public void addPracticeItem(String country, String region) {
+        PracticeItem item = new PracticeItem(country, region, LocalDate.now().plusDays(1L));
         practiceRepository.save(item);
     }
 

@@ -84,8 +84,8 @@ function promptNextCountry() {
 }
 
 function showCongratsScreen() {
-    document.querySelector('.map-area').style.display = 'none';
-    document.querySelector('.finished-message').style.display = 'block';
+    document.querySelector('#map-area').style.display = 'none';
+    document.querySelector('#finished-message').style.display = 'block';
 }
 
 // Click listener
@@ -105,10 +105,28 @@ function onEachCountry(feature, layer) {
         click: checkAnswer,
     })
 }
+
+// Display answer
+function onDisplayCountry() {
+    // find layer of the target country
+    const layer = geoLayer.getLayers().find(l => l.feature.properties.name === targetCountry);
+    // change the fill color
+    layer.setStyle({
+        weight: 3,
+        color: '#ff9400',
+        fillOpacity: 0.7
+    })
+}
+
+function setUpButtonListener() {
+    document.querySelector('#display-country').addEventListener('click', onDisplayCountry);
+}
+
 // Init geoJSON layer
 geoLayer = L.geoJson(data, {style: style, onEachFeature: onEachCountry});
 geoLayer.addTo(map);
 
 // Init practice
+setUpButtonListener();
 document.querySelector('#countries-left').textContent = countriesLeft;
 promptNextCountry();

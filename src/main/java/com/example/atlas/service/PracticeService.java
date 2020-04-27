@@ -19,4 +19,16 @@ public class PracticeService {
         return practiceRepository.getPracticeByRegion(region);
     }
 
+    public void increaseMemoryStrength(Long id) {
+        PracticeItem item = practiceRepository.getOne(id);
+        item.setMemoryStrength(item.getMemoryStrength() + 1);
+        practiceRepository.save(item);
+    }
+
+    public void resetMemoryStrength(Long id) {
+        PracticeItem item = practiceRepository.getOne(id);
+        item.setMemoryStrength(0);
+        practiceRepository.save(item);
+    }
+
 }

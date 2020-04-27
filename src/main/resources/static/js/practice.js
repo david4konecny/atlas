@@ -75,11 +75,34 @@ const countriesToReview = countriesDue.concat(countriesNotPracticed);
 console.log('Countries to review:')
 console.log(countriesToReview);
 
+let hintDisplayed = false;
+
 function onCorrectAnswer() {
+    if (hintDisplayed) {
+        countriesToReview.pop();
+        countriesToReview.splice(0, 0, targetCountry);
+        hintDisplayed = false;
+        promptNextCountry();
+        return;
+    }
     countriesLeft--;
     document.querySelector('#countries-left').textContent = countriesLeft;
     countriesToReview.pop();
+    if (countriesDue.includes(targetCountry)) {
+        let id = practiceItems.find(i => i.country === targetCountry).id;
+        increaseMemoryStrength(id);
+    } else {
+        // TODO: send request to add item to db
+    }
     promptNextCountry();
+}
+
+function onWrongAnswer() {
+    if (countriesDue.includes(targetCountry)) {
+        let id = practiceItems.find(i => i.country === targetCountry).id;
+        resetMemoryStrength(id);
+    }
+    onDisplayCountry();
 }
 
 let countriesLeft = countriesToReview.length;
@@ -102,9 +125,10 @@ function showCongratsScreen() {
 function checkAnswer(e) {
     const layer = e.target;
     let clickedCountry = layer.feature.properties.name;
-    console.log(clickedCountry);
     if (clickedCountry === targetCountry) {
         onCorrectAnswer();
+    } else {
+        onWrongAnswer();
     }
 }
 // Set all listeners
@@ -118,6 +142,7 @@ function onEachCountry(feature, layer) {
 
 // Display answer
 function onDisplayCountry() {
+    hintDisplayed = true;
     // find layer of the target country
     const layer = geoLayer.getLayers().find(l => l.feature.properties.name === targetCountry);
     // change the fill color
@@ -130,6 +155,20 @@ function onDisplayCountry() {
 
 function setUpButtonListener() {
     document.querySelector('#display-country').addEventListener('click', onDisplayCountry);
+}
+
+function increaseMemoryStrength(id) {
+    console.log('Sending request');
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', '/practice/item/increase/' + id);
+    xhr.send();
+}
+
+function resetMemoryStrength(id) {
+    console.log('Sending request');
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', '/practice/item/reset/' + id);
+    xhr.send();
 }
 
 // Init geoJSON layer

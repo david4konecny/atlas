@@ -22,7 +22,9 @@ public class PracticeService {
 
     public void increaseMemoryStrength(Long id) {
         PracticeItem item = practiceRepository.getOne(id);
-        item.setMemoryStrength(item.getMemoryStrength() + 1);
+        int newMemoryStrength = item.getMemoryStrength() + 1;
+        item.setMemoryStrength(newMemoryStrength);
+        item.setNextReview(LocalDate.now().plusDays(newMemoryStrength));
         practiceRepository.save(item);
     }
 

@@ -1,6 +1,7 @@
 package com.example.atlas.service;
 
 import com.example.atlas.model.PracticeItem;
+import com.example.atlas.repository.MapsData;
 import com.example.atlas.repository.PracticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,10 @@ public class PracticeService {
     public void addPracticeItem(String country, String region) {
         PracticeItem item = new PracticeItem(country, region, LocalDate.now().plusDays(1L));
         practiceRepository.save(item);
+    }
+
+    public String[] getCountriesInRegion(String region) {
+        return MapsData.EUROPE_COUNTRIES;
     }
 
 }

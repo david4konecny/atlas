@@ -32,6 +32,9 @@
     <script th:inline="javascript">
         const selectedRegion = [[${param.region[0]}]];
         const practiceItems = [[${practiceItems}]];
+        const countriesInRegion = [[${countriesInRegion}]];
+        console.log('countriesInRegion:');
+        console.log(countriesInRegion);
         console.log(practiceItems);
     </script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"

@@ -1,5 +1,4 @@
 import { data } from "./countries-data.js";
-import { countriesByRegion } from "./countries-by-region.js";
 
 // Constants
 const mapUrl = 'mapbox://styles/dheiskdie/ck9gqaprj0knl1io05o41ad01/draft';
@@ -67,7 +66,6 @@ const practicedItems = practiceItems.map(i => i.country); // Countries already p
 const countriesDue = practiceItems.filter(i => i.nextReview <= today).map(i => i.country); // Countries due for practice
 console.log('Countries due:');
 console.log(countriesDue);
-const countriesInRegion = countriesByRegion[selectedRegion] // All countries in the region
 const countriesNotPracticed = countriesInRegion.filter(i => !practicedItems.includes(i));
 console.log('Countries new:');
 console.log(countriesNotPracticed);

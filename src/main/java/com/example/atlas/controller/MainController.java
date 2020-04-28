@@ -44,7 +44,9 @@ public class MainController {
     @GetMapping("/practice")
     public String practice(@RequestParam String region, Model model) {
         List<PracticeItem> practiceItems = practiceService.getPracticeByRegion(region);
+        String[] countriesInRegion = practiceService.getCountriesInRegion(region);
         model.addAttribute("practiceItems", practiceItems);
+        model.addAttribute("countriesInRegion", countriesInRegion);
         return "practice";
     }
 

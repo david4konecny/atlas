@@ -32,6 +32,7 @@
     <script th:inline="javascript">
         const practiceItems = [[${practiceItems}]];
         const region = [[${region}]];
+        const csrfToken = [[${_csrf.token}]];
         console.log(region);
         console.log('items from db:');
         console.log(practiceItems);

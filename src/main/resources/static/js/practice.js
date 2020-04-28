@@ -168,7 +168,7 @@ function addNewPracticeItem(country, regionName) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/practice/item/add');
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    const data = `country=${country}&region=${regionName}`;
+    const data = `country=${country}&region=${regionName}&_csrf=${csrfToken}`;
     xhr.send(data);
 }
 

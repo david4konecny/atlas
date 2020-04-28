@@ -10,20 +10,20 @@
 
 
         <div>
-            <form class="w-50 mx-auto">
+            <form class="w-50 mx-auto" th:action="@{/login}" method="post">
                 <div class="form-group">
                     <label for="username">Username:</label>
-                    <input class="form-control" type="text" id="username">
+                    <input class="form-control" type="text" id="username" name="username">
                 </div>
 
                 <div class="form-group mb-5">
                     <label for="password">Password:</label>
-                    <input class="form-control" type="password" id="password">
+                    <input class="form-control" type="password" id="password" name="password">
                 </div>
 
                 <div class="text-center">
                     <button class="btn btn-lg btn-success mx-1" type="submit">Log in</button>
-                    <a class="btn btn-lg btn-danger mx-1" href="#">Cancel</a>
+                    <a class="btn btn-lg btn-danger mx-1" th:href="@{/}">Cancel</a>
                 </div>
 
             </form>

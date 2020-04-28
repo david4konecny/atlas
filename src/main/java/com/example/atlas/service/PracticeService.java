@@ -17,7 +17,11 @@ public class PracticeService {
     }
 
     public List<PracticeItem> getPracticeByRegion(String region) {
-        return practiceRepository.getPracticeByRegion(region);
+        return practiceRepository.findByRegion(region);
+    }
+
+    public List<PracticeItem> getItemsByRegionSortedByNextReview(String region) {
+        return practiceRepository.findByRegionOrderByNextReview(region);
     }
 
     public void increaseMemoryStrength(Long id) {

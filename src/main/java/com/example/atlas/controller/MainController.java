@@ -35,7 +35,9 @@ public class MainController {
     }
 
     @GetMapping("/summary")
-    public String summary(@RequestParam String region) {
+    public String summary(@RequestParam String region, Model model) {
+        List<PracticeItem> practiceItems = practiceService.getItemsByRegionSortedByNextReview(region);
+        model.addAttribute("practiceItems", practiceItems);
         return "summary";
     }
 

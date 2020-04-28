@@ -5,7 +5,7 @@
     <nav th:replace="layout :: nav"></nav>
 
     <div class="container">
-        <table class="table">
+        <table class="table mx-auto" style="max-width: 800px;">
             <thead>
                 <tr>
                     <th scope="col">Country</th>
@@ -14,15 +14,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Austria</td>
-                    <td>3</td>
-                    <td>02-05-2020</td>
-                </tr>
-                <tr>
-                    <td>Austria</td>
-                    <td>3</td>
-                    <td>02-05-2020</td>
+                <tr th:each="item : ${practiceItems}">
+                    <td th:text="${item.country}">Austria</td>
+                    <td th:text="${item.memoryStrength}">3</td>
+                    <td th:text="${item.nextReview}">02-05-2020</td>
                 </tr>
             </tbody>
         </table>

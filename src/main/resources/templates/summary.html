@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head"></head>
+<body>
+    <nav th:replace="layout :: nav"></nav>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Country</th>
+                    <th scope="col">Memory strength</th>
+                    <th scope="col">Next review</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Austria</td>
+                    <td>3</td>
+                    <td>02-05-2020</td>
+                </tr>
+                <tr>
+                    <td>Austria</td>
+                    <td>3</td>
+                    <td>02-05-2020</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

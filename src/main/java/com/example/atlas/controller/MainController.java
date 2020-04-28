@@ -34,6 +34,11 @@ public class MainController {
         return "auth";
     }
 
+    @GetMapping("/summary")
+    public String summary(@RequestParam String region) {
+        return "summary";
+    }
+
     @GetMapping("/practice")
     public String practice(@RequestParam String region, Model model) {
         List<PracticeItem> practiceItems = practiceService.getPracticeByRegion(region);

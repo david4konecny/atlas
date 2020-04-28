@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -47,6 +48,10 @@ public class PracticeService {
 
     public Region getRegionByName(String region) {
         return MapsData.REGIONS.get(region);
+    }
+
+    public Collection<Region> getAllRegions() {
+        return MapsData.REGIONS.values();
     }
 
 }

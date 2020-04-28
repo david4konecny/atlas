@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -21,7 +22,9 @@ public class MainController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model) {
+        Collection<Region> regions = practiceService.getAllRegions();
+        model.addAttribute("regions", regions);
         return "dashboard";
     }
 

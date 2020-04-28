@@ -57,13 +57,13 @@ public class MainController {
     }
 
     @ResponseBody
-    @PutMapping("/practice/item/increase/{id}")
+    @PostMapping("/practice/item/increment/{id}")
     public void increaseMemoryStrength(@PathVariable Long id) {
         practiceService.increaseMemoryStrength(id);
     }
 
     @ResponseBody
-    @PutMapping("/practice/item/reset/{id}")
+    @PostMapping("/practice/item/reset/{id}")
     public void resetMemoryStrength(@PathVariable Long id) {
         practiceService.resetMemoryStrength(id);
     }

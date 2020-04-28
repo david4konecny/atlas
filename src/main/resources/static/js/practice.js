@@ -154,14 +154,18 @@ function setUpButtonListener() {
 
 function increaseMemoryStrength(id) {
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', '/practice/item/increase/' + id);
-    xhr.send();
+    xhr.open('POST', '/practice/item/increment/' + id);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    const data = `_csrf=${csrfToken}`;
+    xhr.send(data);
 }
 
 function resetMemoryStrength(id) {
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', '/practice/item/reset/' + id);
-    xhr.send();
+    xhr.open('POST', '/practice/item/reset/' + id);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    const data = `_csrf=${csrfToken}`;
+    xhr.send(data);
 }
 
 function addNewPracticeItem(country, regionName) {

@@ -1,6 +1,7 @@
 package com.example.atlas.service;
 
 import com.example.atlas.model.PracticeItem;
+import com.example.atlas.model.Region;
 import com.example.atlas.repository.MapsData;
 import com.example.atlas.repository.PracticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,8 @@ public class PracticeService {
         practiceRepository.save(item);
     }
 
-    public String[] getCountriesInRegion(String region) {
-        return MapsData.EUROPE_COUNTRIES;
+    public Region getRegionByName(String region) {
+        return MapsData.REGIONS.get(region);
     }
 
 }

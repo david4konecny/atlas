@@ -2,19 +2,16 @@ import { data } from "./countries-data.js";
 
 // Constants
 const mapUrl = 'mapbox://styles/dheiskdie/ck9gqaprj0knl1io05o41ad01/draft';
-const centerCoordinates = [49.78, 20.74];
-const lowerLeftBound = [32.03, -18.9];
-const higherUpperBound = [71.86, 60.82];
 
 // Map properties
 const options = {
-    center: centerCoordinates,
+    center: region.centerCoordinates,
     zoom: 3.5,
     minZoom: 3.5,
     maxZoom: 5.5,
-    zoomSnap: 0.5,
+    zoomSnap: 0.2,
     zoomControl: false,
-    maxBounds: [lowerLeftBound, higherUpperBound],
+    maxBounds: [region.lowerLeftBound, region.upperRightBound],
     maxBoundsViscosity: 1.0
 };
 
@@ -66,7 +63,7 @@ const practicedItems = practiceItems.map(i => i.country); // Countries already p
 const countriesDue = practiceItems.filter(i => i.nextReview <= today).map(i => i.country); // Countries due for practice
 console.log('Countries due:');
 console.log(countriesDue);
-const countriesNotPracticed = countriesInRegion.filter(i => !practicedItems.includes(i));
+const countriesNotPracticed = region.countries.filter(i => !practicedItems.includes(i));
 console.log('Countries new:');
 console.log(countriesNotPracticed);
 const countriesToReview = countriesDue.concat(countriesNotPracticed);
@@ -90,7 +87,7 @@ function onCorrectAnswer() {
         let id = practiceItems.find(i => i.country === targetCountry).id;
         increaseMemoryStrength(id);
     } else {
-        addNewPracticeItem(targetCountry, selectedRegion);
+        addNewPracticeItem(targetCountry, region.name);
     }
     promptNextCountry();
 }
@@ -167,11 +164,11 @@ function resetMemoryStrength(id) {
     xhr.send();
 }
 
-function addNewPracticeItem(country, region) {
+function addNewPracticeItem(country, regionName) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/practice/item/add');
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    const data = `country=${country}&region=${region}`;
+    const data = `country=${country}&region=${regionName}`;
     xhr.send(data);
 }
 

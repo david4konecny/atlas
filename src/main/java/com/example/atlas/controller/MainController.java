@@ -1,6 +1,7 @@
 package com.example.atlas.controller;
 
 import com.example.atlas.model.PracticeItem;
+import com.example.atlas.model.Region;
 import com.example.atlas.service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,9 +45,11 @@ public class MainController {
     @GetMapping("/practice")
     public String practice(@RequestParam String region, Model model) {
         List<PracticeItem> practiceItems = practiceService.getPracticeByRegion(region);
-        String[] countriesInRegion = practiceService.getCountriesInRegion(region);
+        // String[] countriesInRegion = practiceService.getCountriesInRegion(region);
+        Region regionData = practiceService.getRegionByName(region);
         model.addAttribute("practiceItems", practiceItems);
-        model.addAttribute("countriesInRegion", countriesInRegion);
+        model.addAttribute("region", regionData);
+        // model.addAttribute("countriesInRegion", countriesInRegion);
         return "practice";
     }
 

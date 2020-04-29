@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head"></head>
+<body>
+    <div class="container">
+
+        <div class="mx-auto text-center">
+            <h1 class="display-2 mb-5">Atlas</h1>
+        </div>
+
+        <p>Url: <span th:text="${#httpServletRequest.requestURI}"></span></p>
+
+        <div>
+            <form class="w-50 mx-auto" th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" id="username" name="username">
+                </div>
+
+                <div class="form-group mb-5">
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" id="password" name="password">
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-lg btn-success mx-1" type="submit">Log in</button>
+                    <a class="btn btn-lg btn-danger mx-1" th:href="@{/}">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+</body>
+</html>

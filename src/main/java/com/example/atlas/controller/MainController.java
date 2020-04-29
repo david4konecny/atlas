@@ -29,16 +29,6 @@ public class MainController {
         return "dashboard";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "auth";
-    }
-
-    @GetMapping("/signup")
-    public String signup() {
-        return "auth";
-    }
-
     @GetMapping("/summary")
     public String summary(@RequestParam String region, Model model, Principal principal) {
         List<PracticeItem> practiceItems = practiceService.getItemsByRegionSortedByNextReview(region, principal.getName());

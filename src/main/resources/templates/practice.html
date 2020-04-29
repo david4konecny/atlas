@@ -11,22 +11,22 @@
 
     <title>Atlas - Learn maps effectively</title>
 </head>
-<body>
+<body class="bg-dark text-white">
     <nav th:replace="layout :: nav"></nav>
 
     <div id="map-area" class="container text-center mb-3">
         <h3 class="mb-4">Select <span id="country">Czechia</span></h3>
-        <div id="map" class="mx-auto mb-4" style="width: 75%; height: 450px;">
+        <div id="map" class="mx-auto mb-4" style="width: 75%; height: 450px; border: medium solid white; border-radius: 4px;">
         </div>
         <p><span id="countries-left">11</span> countries left</p>
-        <button id="display-country" class="btn btn-outline-secondary mx-1" type="button">Display country</button>
-        <a class="btn btn-outline-secondary mx-1" th:href="@{/dashboard}">Quit practice</a>
+        <button id="display-country" class="btn btn-outline-light mx-1" type="button">Display country</button>
+        <a class="btn btn-outline-light mx-1" th:href="@{/dashboard}">Quit practice</a>
     </div>
 
-    <div id="finished-message" class="container text-center mb-3" style="display: none;">
+    <div id="finished-message" class="container text-center my-5" style="display: none;">
         <h2>Congratulations!</h2>
         <p>You've finished the practice.</p>
-        <a class="btn btn-outline-secondary" th:href="@{/dashboard}">Back to dashboard</a>
+        <a class="btn btn-outline-light" th:href="@{/dashboard}">Back to dashboard</a>
     </div>
 
     <script th:inline="javascript">

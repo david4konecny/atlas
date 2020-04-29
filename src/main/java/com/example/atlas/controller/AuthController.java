@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static com.example.atlas.service.UserService.UserAlreadyExistsException;
 
 @Controller
 public class AuthController {
@@ -20,13 +23,23 @@ public class AuthController {
 
     @GetMapping("/signup")
     public String signup(Model model) {
-        model.addAttribute("user", new UserDto());
+        UserDto user = new UserDto();
+        model.addAttribute("user", user);
+        if (model.containsAttribute("userAlreadyExists")) {
+            user.setUsername((String) model.getAttribute("username"));
+        }
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String createUser(@ModelAttribute("user") UserDto user) {
-        userService.addNewUser(user.getUsername(), user.getPassword());
+    public String createUser(@ModelAttribute("user") UserDto user, RedirectAttributes attributes) {
+        try {
+            userService.addNewUser(user.getUsername(), user.getPassword());
+        } catch (UserAlreadyExistsException e) {
+            attributes.addFlashAttribute("userAlreadyExists", true);
+            attributes.addFlashAttribute("username", user.getUsername());
+            return "redirect:/signup";
+        }
         return "redirect:/";
     }
 

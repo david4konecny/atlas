@@ -14,8 +14,7 @@ import java.util.List;
 
 @Controller
 public class MainController {
-    @Autowired
-    private PracticeService practiceService;
+    private @Autowired PracticeService practiceService;
 
     @GetMapping("/")
     public String home() {
@@ -39,11 +38,9 @@ public class MainController {
     @GetMapping("/practice")
     public String practice(@RequestParam String region, Model model, Principal principal) {
         List<PracticeItem> practiceItems = practiceService.getPracticeByRegion(principal.getName(), region);
-        // String[] countriesInRegion = practiceService.getCountriesInRegion(region);
         Region regionData = practiceService.getRegionByName(region);
         model.addAttribute("practiceItems", practiceItems);
         model.addAttribute("region", regionData);
-        // model.addAttribute("countriesInRegion", countriesInRegion);
         return "practice";
     }
 

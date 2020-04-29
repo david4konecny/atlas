@@ -11,9 +11,9 @@ public class UserService {
     @Autowired
     UserDetailsManager userDetailsManager;
 
-    public void addNewUser(String username, String password) {
+    public void addNewUser(String username, String password) throws UserAlreadyExistsException {
         if (userDetailsManager.userExists(username)) {
-            // TODO: throw UserAlreadyExistsException
+            throw new UserAlreadyExistsException(username);
         } else {
             UserDetails user = createUserDetails(username, password);
             userDetailsManager.createUser(user);
@@ -28,4 +28,9 @@ public class UserService {
                 .build();
     }
 
+    public static class UserAlreadyExistsException extends Throwable {
+        public UserAlreadyExistsException(String username) {
+            super(String.format("Username %s already exists", username));
+        }
+    }
 }

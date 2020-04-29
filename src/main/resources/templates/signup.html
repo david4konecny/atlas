@@ -12,7 +12,11 @@
             <form class="w-50 mx-auto" th:action="@{/signup}" method="post" th:object="${user}">
                 <div class="form-group">
                     <label for="username">Username:</label>
-                    <input class="form-control" type="text" id="username" th:field="*{username}">
+                    <input class="form-control" type="text" id="username"
+                           th:field="*{username}" th:classappend="${userAlreadyExists} ? 'is-invalid'">
+                    <div class="invalid-feedback" th:if="${userAlreadyExists}">
+                        Username already exists
+                    </div>
                 </div>
 
                 <div class="form-group mb-5">

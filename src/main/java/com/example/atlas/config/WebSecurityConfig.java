@@ -7,8 +7,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -31,8 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
+    UserDetailsManager users(DataSource dataSource) {
+        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
         UserDetails user1 = User.withDefaultPasswordEncoder()
                 .username("joe")
                 .password("test")
@@ -43,6 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .password("test")
                 .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(user1, user2);
+        users.createUser(user1);
+        users.createUser(user2);
+        return users;
     }
+
 }

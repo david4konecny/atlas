@@ -19,12 +19,12 @@ public class PracticeService {
         practiceRepository.saveAll(items);
     }
 
-    public List<PracticeItem> getPracticeByRegion(String region) {
-        return practiceRepository.findByRegion(region);
+    public List<PracticeItem> getPracticeByRegion(String username, String region) {
+        return practiceRepository.findByUsernameAndRegion(username, region);
     }
 
-    public List<PracticeItem> getItemsByRegionSortedByNextReview(String region) {
-        return practiceRepository.findByRegionOrderByNextReview(region);
+    public List<PracticeItem> getItemsByRegionSortedByNextReview(String region, String username) {
+        return practiceRepository.findByUsernameAndRegionOrderByNextReview(username, region);
     }
 
     public void increaseMemoryStrength(Long id) {
@@ -41,8 +41,8 @@ public class PracticeService {
         practiceRepository.save(item);
     }
 
-    public void addPracticeItem(String country, String region) {
-        PracticeItem item = new PracticeItem(country, region, LocalDate.now().plusDays(1L));
+    public void addPracticeItem(String username, String country, String region) {
+        PracticeItem item = new PracticeItem(username, country, region, LocalDate.now().plusDays(1L));
         practiceRepository.save(item);
     }
 

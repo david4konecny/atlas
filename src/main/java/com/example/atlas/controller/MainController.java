@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,15 +40,15 @@ public class MainController {
     }
 
     @GetMapping("/summary")
-    public String summary(@RequestParam String region, Model model) {
-        List<PracticeItem> practiceItems = practiceService.getItemsByRegionSortedByNextReview(region);
+    public String summary(@RequestParam String region, Model model, Principal principal) {
+        List<PracticeItem> practiceItems = practiceService.getItemsByRegionSortedByNextReview(region, principal.getName());
         model.addAttribute("practiceItems", practiceItems);
         return "summary";
     }
 
     @GetMapping("/practice")
-    public String practice(@RequestParam String region, Model model) {
-        List<PracticeItem> practiceItems = practiceService.getPracticeByRegion(region);
+    public String practice(@RequestParam String region, Model model, Principal principal) {
+        List<PracticeItem> practiceItems = practiceService.getPracticeByRegion(principal.getName(), region);
         // String[] countriesInRegion = practiceService.getCountriesInRegion(region);
         Region regionData = practiceService.getRegionByName(region);
         model.addAttribute("practiceItems", practiceItems);
@@ -70,8 +71,8 @@ public class MainController {
 
     @ResponseBody
     @PostMapping("/practice/item/add")
-    public void addPracticeItem(@RequestParam String country, @RequestParam String region) {
-        practiceService.addPracticeItem(country, region);
+    public void addPracticeItem(@RequestParam String country, @RequestParam String region, Principal principal) {
+        practiceService.addPracticeItem(principal.getName(), country, region);
     }
 
 }

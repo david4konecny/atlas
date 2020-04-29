@@ -24,15 +24,15 @@ public class DataLoader implements ApplicationRunner {
     private void addSampleData() {
         List<PracticeItem> items = new ArrayList<>();
         Collections.addAll(items,
-                new PracticeItem("Denmark", "europe", LocalDate.now()),
-                new PracticeItem("Northern Cyprus", "europe", LocalDate.now()),
-                new PracticeItem("Cyprus", "europe", LocalDate.now().plusDays(1L)),
-                new PracticeItem("Germany", "europe", LocalDate.now().plusDays(1L)),
-                new PracticeItem("Spain", "europe", LocalDate.now().plusDays(2L))
+                new PracticeItem("joe", "Denmark", "europe", LocalDate.now()),
+                new PracticeItem("joe", "Northern Cyprus", "europe", LocalDate.now()),
+                new PracticeItem("joe", "Cyprus", "europe", LocalDate.now().plusDays(1L)),
+                new PracticeItem("joe", "Germany", "europe", LocalDate.now().plusDays(1L)),
+                new PracticeItem("frank", "Spain", "europe", LocalDate.now().plusDays(2L))
         );
-        PracticeItem item1 = new PracticeItem("Austria", "europe", LocalDate.now());
+        PracticeItem item1 = new PracticeItem("frank", "Austria", "europe", LocalDate.now());
         item1.setMemoryStrength(2);
-        PracticeItem item2 = new PracticeItem("Switzerland", "europe", LocalDate.now());
+        PracticeItem item2 = new PracticeItem("frank", "Switzerland", "europe", LocalDate.now());
         item2.setMemoryStrength(5);
         Collections.addAll(items, item1, item2);
         practiceService.saveAll(items);

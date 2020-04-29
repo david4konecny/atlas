@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface PracticeRepository extends JpaRepository<PracticeItem, Long> {
 
-    List<PracticeItem> findByRegion(String region);
+    List<PracticeItem> findByUsernameAndRegion(String username, String region);
 
-    List<PracticeItem> findByRegionOrderByNextReview(String region);
+    List<PracticeItem> findByUsernameAndRegionOrderByNextReview(String username, String region);
 
 }

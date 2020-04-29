@@ -10,6 +10,7 @@ import java.time.LocalDate;
 public class PracticeItem {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String username;
     private String country;
     private String region;
     private Integer memoryStrength;
@@ -18,7 +19,8 @@ public class PracticeItem {
     public PracticeItem() {
     }
 
-    public PracticeItem(String country, String region, LocalDate nextReview) {
+    public PracticeItem(String username, String country, String region, LocalDate nextReview) {
+        this.username = username;
         this.country = country;
         this.memoryStrength = 1;
         this.region = region;
@@ -31,6 +33,14 @@ public class PracticeItem {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getCountry() {

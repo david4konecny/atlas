@@ -13,6 +13,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">Atlas</a>
             <form th:action="@{/logout}" method="post" class="form-inline">
+                <span class="nav-item mx-3" th:text="${#httpServletRequest.remoteUser}">User</span>
                 <button class="btn btn-outline-light" type="submit">Sign out</button>
             </form>
         </div>

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import static com.example.atlas.service.UserService.UserAlreadyExistsException;
@@ -35,7 +37,9 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String createUser(Model model, RedirectAttributes attributes, @ModelAttribute("user") @Valid UserDto user, BindingResult bindingResult) {
+    public String processRegistration(Model model, RedirectAttributes attributes,
+                                      @ModelAttribute("user") @Valid UserDto user, BindingResult bindingResult,
+                                      HttpServletRequest request) throws ServletException {
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", user);
             return "signup";
@@ -47,7 +51,8 @@ public class AuthController {
             attributes.addFlashAttribute("username", user.getUsername());
             return "redirect:/signup";
         }
-        return "redirect:/";
+        request.login(user.getUsername(), user.getPassword());
+        return "redirect:/dashboard";
     }
 
 }

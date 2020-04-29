@@ -1,6 +1,8 @@
 package com.example.atlas.controller;
 
 import com.example.atlas.model.UserDto;
+import com.example.atlas.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AuthController {
+    private @Autowired UserService userService;
 
     @GetMapping("/login")
     public String login() {
@@ -23,8 +26,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public String createUser(@ModelAttribute("user") UserDto user) {
-        // TODO: check if username exists
-        // TODO: add user to db
+        userService.addNewUser(user.getUsername(), user.getPassword());
         return "redirect:/";
     }
 

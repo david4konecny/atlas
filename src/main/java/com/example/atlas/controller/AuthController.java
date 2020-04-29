@@ -5,10 +5,13 @@ import com.example.atlas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 import static com.example.atlas.service.UserService.UserAlreadyExistsException;
 
@@ -32,7 +35,11 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String createUser(@ModelAttribute("user") UserDto user, RedirectAttributes attributes) {
+    public String createUser(Model model, RedirectAttributes attributes, @ModelAttribute("user") @Valid UserDto user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
+            return "signup";
+        }
         try {
             userService.addNewUser(user.getUsername(), user.getPassword());
         } catch (UserAlreadyExistsException e) {

@@ -4,9 +4,7 @@
 <body class="bg-dark text-white">
     <div class="container">
 
-        <div class="mx-auto text-center">
-            <h1 class="display-3 mt-3 mb-5">Atlas</h1>
-        </div>
+        <h1 th:replace="layout :: heading">Atlas</h1>
 
         <div th:if="${param.logout}" class="w-50 mx-auto alert alert-success alert-dismissible fade show" role="alert">
             You have been logged out.

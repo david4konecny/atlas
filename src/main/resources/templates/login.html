@@ -8,6 +8,22 @@
             <h1 class="display-3 mt-3 mb-5">Atlas</h1>
         </div>
 
+        <div th:if="${param.logout}" class="w-50 mx-auto alert alert-success alert-dismissible fade show" role="alert">
+            You have been logged out.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <h2 class="display-5 text-center">Log into your account</h2>
+
+        <div th:if="${param.error}" class="w-50 mx-auto mt-2 alert alert-danger alert-dismissible fade show" role="alert">
+            Incorrect username and password.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         <div>
             <form class="w-50 mx-auto" th:action="@{/login}" method="post">
                 <div class="form-group">
@@ -28,8 +44,9 @@
             </form>
         </div>
 
-
-
     </div>
+
+    <div th:include="layout :: scripts"></div>
+
 </body>
 </html>

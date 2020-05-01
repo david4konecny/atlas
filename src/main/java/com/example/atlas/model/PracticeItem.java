@@ -19,11 +19,15 @@ public class PracticeItem {
     public PracticeItem() {
     }
 
-    public PracticeItem(String username, String country, String region, LocalDate nextReview) {
+    public PracticeItem(String username, String country, String region) {
+        this(username, country, region, 0, null);
+    }
+
+    public PracticeItem(String username, String country, String region, Integer memoryStrength, LocalDate nextReview) {
         this.username = username;
         this.country = country;
-        this.memoryStrength = 1;
         this.region = region;
+        this.memoryStrength = memoryStrength;
         this.nextReview = nextReview;
     }
 

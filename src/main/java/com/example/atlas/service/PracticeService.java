@@ -7,13 +7,13 @@ import com.example.atlas.repository.PracticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
 @Service
 public class PracticeService {
     private @Autowired PracticeRepository practiceRepository;
+    private @Autowired SpacingStrategy spacingStrategy;
 
     public void saveAll(List<PracticeItem> items) {
         practiceRepository.saveAll(items);
@@ -29,9 +29,7 @@ public class PracticeService {
 
     public void increaseMemoryStrength(Long id) {
         PracticeItem item = practiceRepository.getOne(id);
-        int newMemoryStrength = item.getMemoryStrength() + 1;
-        item.setMemoryStrength(newMemoryStrength);
-        item.setNextReview(LocalDate.now().plusDays(newMemoryStrength));
+        spacingStrategy.rescheduleCorrectlyAnswered(item);
         practiceRepository.save(item);
     }
 
@@ -42,7 +40,8 @@ public class PracticeService {
     }
 
     public void addPracticeItem(String username, String country, String region) {
-        PracticeItem item = new PracticeItem(username, country, region, LocalDate.now().plusDays(1L));
+        PracticeItem item = new PracticeItem(username, country, region);
+        spacingStrategy.rescheduleCorrectlyAnswered(item);
         practiceRepository.save(item);
     }
 

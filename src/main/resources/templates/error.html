@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body class="bg-dark text-white">
+    <div class="container text-center">
+
+        <h1 th:replace="layout :: heading">Atlas</h1>
+
+        <h2 class="display-4 mb-3">Oops, something went wrong.</h2>
+        <a th:href="@{/}" class="btn btn-lg btn-outline-light">Return home</a>
+
+    </div>
+</body>
+</html>

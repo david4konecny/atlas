@@ -57,4 +57,8 @@ public class Region {
     public void setUpperRightBound(double[] upperRightBound) {
         this.upperRightBound = upperRightBound;
     }
+
+    public int getNumOfCountries() {
+        return countries.length;
+    }
 }

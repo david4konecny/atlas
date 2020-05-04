@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
@@ -25,9 +26,11 @@ public class MainController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(Model model) {
+    public String dashboard(Model model, Principal principal) {
         Collection<Region> regions = practiceService.getAllRegions();
+        Map<String, Long> practice = practiceService.getNumOfItemsForPracticeByRegion(principal.getName());
         model.addAttribute("regions", regions);
+        model.addAttribute("practice", practice);
         return "dashboard";
     }
 

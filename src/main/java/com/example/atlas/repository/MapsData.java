@@ -7,10 +7,12 @@ import java.util.Map;
 
 public class MapsData {
     public static final Map<String, Region> REGIONS = new HashMap<>();
+    public static final Map<String, Integer> NUM_OF_COUNTRIES_PER_REGION = new HashMap<>();
 
     static {
         REGIONS.put("europe", europeRegion());
         REGIONS.put("asia", asiaRegion());
+        REGIONS.forEach((name, region) -> NUM_OF_COUNTRIES_PER_REGION.put(name, region.getNumOfCountries()));
     }
 
     private static Region europeRegion() {

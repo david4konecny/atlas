@@ -7,8 +7,12 @@ import com.example.atlas.repository.PracticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PracticeService {
@@ -51,6 +55,30 @@ public class PracticeService {
 
     public Collection<Region> getAllRegions() {
         return MapsData.REGIONS.values();
+    }
+
+    public Map<String, Long> getNumOfItemsForPracticeByRegion(String username) {
+        Map<String, Long> res = new HashMap<>();
+        List<PracticeItem> practiceItems = practiceRepository.findByUsername(username);
+        Map<String, Integer> all = MapsData.NUM_OF_COUNTRIES_PER_REGION;
+        Map<String, Long> due = getNumOfDuePerRegion(practiceItems);
+        Map<String, Long> practiced = getNumOfPracticedPerRegion(practiceItems);
+        all.forEach((name, total) -> {
+                    res.put(name, total - practiced.getOrDefault(name, 0L) + due.getOrDefault(name, 0L));
+                }
+        );
+        return res;
+    }
+
+    private Map<String, Long> getNumOfDuePerRegion(List<PracticeItem> items) {
+        return items.stream()
+                .filter(i -> !i.getNextReview().isAfter(LocalDate.now()))
+                .collect(Collectors.groupingBy(PracticeItem::getRegion, Collectors.counting()));
+    }
+
+    private Map<String, Long> getNumOfPracticedPerRegion(List<PracticeItem> items) {
+        return items.stream()
+                .collect(Collectors.groupingBy(PracticeItem::getRegion, Collectors.counting()));
     }
 
 }

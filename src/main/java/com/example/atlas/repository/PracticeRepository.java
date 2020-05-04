@@ -11,4 +11,6 @@ public interface PracticeRepository extends JpaRepository<PracticeItem, Long> {
 
     List<PracticeItem> findByUsernameAndRegionOrderByNextReview(String username, String region);
 
+    List<PracticeItem> findByUsername(String username);
+
 }

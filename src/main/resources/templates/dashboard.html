@@ -5,8 +5,8 @@
     <nav th:replace="layout :: nav"></nav>
 
     <div class="container">
-        <div class="row">
-            <div th:each="region : ${regions}" class="card bg-light col-md-6 col-xl-4 m-2" style="max-width: 400px;">
+        <div class="row row-cols-1 row-cols-md-2 justify-content-center">
+            <div th:each="region : ${regions}" class="card col bg-light m-2" style="max-width: 480px;">
                 <div class="row no-gutters">
                     <div class="col-md-7">
                         <div style="width: 100%; height: 100%; max-width: 200px; max-height: 200px; background: blue;">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-md-5">
                         <div class="card-body">
-                            <h5 th:text="${region.name}" class="card-title">Europe</h5>
+                            <h5 th:text="${region.displayName}" class="card-title">Europe</h5>
                             <p>
                                 <span th:text="${practice.get(region.name)}">4</span> countries for review
                             </p>

@@ -2,6 +2,7 @@ package com.example.atlas.model;
 
 public class Region {
     private String name;
+    private String displayName;
     private String[] countries;
     private double[] centerCoordinates;
     private double[] lowerLeftBound;
@@ -9,20 +10,20 @@ public class Region {
 
     public Region() {}
 
-    public Region(String name, String[] countries, double[] centerCoordinates, double[] lowerLeftBound, double[] upperRightBound) {
-        this.name = name;
-        this.countries = countries;
-        this.centerCoordinates = centerCoordinates;
-        this.lowerLeftBound = lowerLeftBound;
-        this.upperRightBound = upperRightBound;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String[] getCountries() {

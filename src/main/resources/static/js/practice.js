@@ -6,8 +6,8 @@ const mapUrl = 'mapbox://styles/dheiskdie/ck9gqaprj0knl1io05o41ad01/draft';
 // Map properties
 const options = {
     center: region.centerCoordinates,
-    zoom: 3.5,
-    minZoom: 3.5,
+    zoom: 3.0,
+    minZoom: 2.5,
     maxZoom: 5.5,
     zoomSnap: 0.2,
     zoomControl: false,
@@ -143,7 +143,7 @@ function onDisplayCountry() {
     // change the fill color
     layer.setStyle({
         weight: 3,
-        color: '#ff9400',
+        color: 'red',
         fillOpacity: 0.7
     })
 }

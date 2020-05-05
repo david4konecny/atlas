@@ -2,6 +2,7 @@ package com.example.atlas.controller;
 
 import com.example.atlas.model.PracticeItem;
 import com.example.atlas.model.Region;
+import com.example.atlas.repository.MapsData;
 import com.example.atlas.service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,7 +38,9 @@ public class MainController {
     @GetMapping("/summary")
     public String summary(@RequestParam String region, Model model, Principal principal) {
         List<PracticeItem> practiceItems = practiceService.getItemsByRegionSortedByNextReview(region, principal.getName());
+        String regionName = MapsData.REGIONS.get(region).getDisplayName();
         model.addAttribute("practiceItems", practiceItems);
+        model.addAttribute("regionName", regionName);
         return "summary";
     }
 

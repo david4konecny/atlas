@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserDto {
-    @NotNull @Size(min = 3, message = "Minimum username length: 3")
+    @NotNull @Size(min = 3, max = 15, message = "Minimum username length: 3")
     private String username;
     @NotNull @Size(min = 4, message = "Minimum password length: 4")
     private String password;

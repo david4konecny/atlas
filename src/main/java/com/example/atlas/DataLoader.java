@@ -30,6 +30,7 @@ public class DataLoader implements ApplicationRunner {
                 new PracticeItem("joe", "Germany", "europe", 3, LocalDate.now().plusDays(1L)),
                 new PracticeItem("frank", "Spain", "europe", 3, LocalDate.now().plusDays(2L)),
                 new PracticeItem("frank", "Austria", "europe", 2, LocalDate.now()),
+                new PracticeItem("frank", "Australia", "oceania", 5, LocalDate.now()),
                 new PracticeItem("frank", "Switzerland", "europe", 10, LocalDate.now())
         );
         Collections.addAll(items);

@@ -57,6 +57,10 @@ public class PracticeService {
         return MapsData.REGIONS.values();
     }
 
+    public String getRegionName(String regionId) {
+        return MapsData.REGIONS.get(regionId).getName();
+    }
+
     public Map<String, Long> getNumOfItemsForPracticeByRegion(String username) {
         Map<String, Long> res = new HashMap<>();
         List<PracticeItem> practiceItems = practiceRepository.findByUsername(username);

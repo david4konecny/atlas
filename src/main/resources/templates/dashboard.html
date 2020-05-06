@@ -15,12 +15,12 @@
                     </div>
                     <div class="col-md-5">
                         <div class="card-body">
-                            <h5 th:text="${region.displayName}" class="card-title">Europe</h5>
+                            <h5 th:text="${region.name}" class="card-title">Europe</h5>
                             <p>
-                                <span th:text="${practice.get(region.name)}">4</span> countries for review
+                                <span th:text="${practice.get(region.id)}">4</span> countries for review
                             </p>
-                            <a class="btn btn-sm btn-outline-dark btn-block" th:href="@{/practice(region=${region.name})}">Practice</a>
-                            <a class="btn btn-sm btn-outline-dark btn-block" th:href="@{/summary(region=${region.name})}">Summary</a>
+                            <a class="btn btn-sm btn-outline-dark btn-block" th:href="@{/practice(region=${region.id})}">Practice</a>
+                            <a class="btn btn-sm btn-outline-dark btn-block" th:href="@{/summary(region=${region.id})}">Summary</a>
                         </div>
                     </div>
                 </div>

@@ -22,8 +22,8 @@ public class MapsData {
 
     private static Region europeRegion() {
         Region region = new Region();
-        region.setName("europe");
-        region.setDisplayName("Europe");
+        region.setId("europe");
+        region.setName("Europe");
         region.setCountries(europeCountries());
         region.setCenterCoordinates(new double[] { 49.78, 20.74 });
         region.setLowerLeftBound(new double[] { 32.03, -18.9 });
@@ -33,8 +33,8 @@ public class MapsData {
 
     private static Region asiaRegion() {
         Region region = new Region();
-        region.setName("asia");
-        region.setDisplayName("Asia");
+        region.setId("asia");
+        region.setName("Asia");
         region.setCountries(asiaCountries());
         region.setCenterCoordinates(new double[] { 43.07, 88.24 });
         region.setLowerLeftBound(new double[] { 12.9, 27.95 });
@@ -44,8 +44,8 @@ public class MapsData {
 
     private static Region africaRegion() {
         Region region = new Region();
-        region.setName("africa");
-        region.setDisplayName("Africa");
+        region.setId("africa");
+        region.setName("Africa");
         region.setCountries(africaCountries());
         region.setCenterCoordinates(new double[] { 0, 21 });
         region.setLowerLeftBound(new double[] { -46, -27 });
@@ -55,8 +55,8 @@ public class MapsData {
 
     private static Region northAmericaRegion() {
         Region region = new Region();
-        region.setName("n-america");
-        region.setDisplayName("North America");
+        region.setId("n-america");
+        region.setName("North America");
         region.setCountries(northAmericaCountries());
         region.setCenterCoordinates(new double[] { 53, -89 });
         region.setLowerLeftBound(new double[] { -4, -177 });
@@ -66,8 +66,8 @@ public class MapsData {
 
     private static Region southAmericaRegion() {
         Region region = new Region();
-        region.setName("s-america");
-        region.setDisplayName("South America");
+        region.setId("s-america");
+        region.setName("South America");
         region.setCountries(southAmericaCountries());
         region.setCenterCoordinates(new double[] { -26, -57 });
         region.setLowerLeftBound(new double[] { -61, -109 });
@@ -77,8 +77,8 @@ public class MapsData {
 
     private static Region oceaniaRegion() {
         Region region = new Region();
-        region.setName("oceania");
-        region.setDisplayName("Oceania");
+        region.setId("oceania");
+        region.setName("Oceania");
         region.setCountries(oceaniaCountries());
         region.setCenterCoordinates(new double[] { -24, 140 });
         region.setLowerLeftBound(new double[] { -54, 83 });

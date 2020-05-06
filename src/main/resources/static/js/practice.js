@@ -87,7 +87,7 @@ function onCorrectAnswer() {
         let id = practiceItems.find(i => i.country === targetCountry).id;
         increaseMemoryStrength(id);
     } else {
-        addNewPracticeItem(targetCountry, region.name);
+        addNewPracticeItem(targetCountry, region.id);
     }
     promptNextCountry();
 }

@@ -26,8 +26,8 @@ public class MapsData {
         region.setName("Europe");
         region.setCountries(europeCountries());
         region.setCenterCoordinates(new double[] { 49.78, 20.74 });
-        region.setLowerLeftBound(new double[] { 32.03, -18.9 });
-        region.setUpperRightBound(new double[] { 71.86, 60.82 });
+        region.setLowerLeftBound(new double[] { 24, -29 });
+        region.setUpperRightBound(new double[] { 74, 65 });
         return region;
     }
 
@@ -37,8 +37,8 @@ public class MapsData {
         region.setName("Asia");
         region.setCountries(asiaCountries());
         region.setCenterCoordinates(new double[] { 43.07, 88.24 });
-        region.setLowerLeftBound(new double[] { 12.9, 27.95 });
-        region.setUpperRightBound(new double[] { 64.62, 161.89 });
+        region.setLowerLeftBound(new double[] { 2, 15 });
+        region.setUpperRightBound(new double[] { 75, 178 });
         return region;
     }
 
@@ -48,8 +48,8 @@ public class MapsData {
         region.setName("Africa");
         region.setCountries(africaCountries());
         region.setCenterCoordinates(new double[] { 0, 21 });
-        region.setLowerLeftBound(new double[] { -46, -27 });
-        region.setUpperRightBound(new double[] { 42, 69 });
+        region.setLowerLeftBound(new double[] { -48, -32 });
+        region.setUpperRightBound(new double[] { 45, 75 });
         return region;
     }
 
@@ -60,7 +60,7 @@ public class MapsData {
         region.setCountries(northAmericaCountries());
         region.setCenterCoordinates(new double[] { 53, -89 });
         region.setLowerLeftBound(new double[] { -4, -177 });
-        region.setUpperRightBound(new double[] { 75, -32 });
+        region.setUpperRightBound(new double[] { 85, -25 });
         return region;
     }
 
@@ -70,8 +70,8 @@ public class MapsData {
         region.setName("South America");
         region.setCountries(southAmericaCountries());
         region.setCenterCoordinates(new double[] { -26, -57 });
-        region.setLowerLeftBound(new double[] { -61, -109 });
-        region.setUpperRightBound(new double[] { 21, -8 });
+        region.setLowerLeftBound(new double[] { -65, -125 });
+        region.setUpperRightBound(new double[] { 21, 2 });
         return region;
     }
 
@@ -82,7 +82,7 @@ public class MapsData {
         region.setCountries(oceaniaCountries());
         region.setCenterCoordinates(new double[] { -24, 140 });
         region.setLowerLeftBound(new double[] { -54, 83 });
-        region.setUpperRightBound(new double[] { 20, 179 });
+        region.setUpperRightBound(new double[] { 35, 179 });
         return region;
     }
 

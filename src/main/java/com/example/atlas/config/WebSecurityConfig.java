@@ -36,20 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     UserDetailsManager users(DataSource dataSource) {
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-        UserDetails user1 = User.withDefaultPasswordEncoder()
-                .username("joe")
-                .password("test")
-                .roles("USER")
-                .build();
-        UserDetails user2 = User.withDefaultPasswordEncoder()
-                .username("frank")
-                .password("test")
-                .roles("USER")
-                .build();
-        users.createUser(user1);
-        users.createUser(user2);
-        return users;
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean

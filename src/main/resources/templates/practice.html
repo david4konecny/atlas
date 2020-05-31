@@ -15,8 +15,9 @@
     <nav th:replace="layout :: nav"></nav>
 
     <div id="map-area" class="container text-center mb-3">
-        <h3 class="mb-4">Select <span id="country">Czechia</span></h3>
-        <div id="map" class="mx-auto mb-4" style="width: 75%; height: 450px; border: medium solid white; border-radius: 4px;">
+        <p class="mb-0">Select</p>
+        <h3 class="mb-4"><span id="country"></span></h3>
+        <div id="map" class="mx-auto mb-4" style="max-width: 700px; height: 450px; border: medium solid white; border-radius: 4px;">
         </div>
         <p><span id="countries-left">11</span> countries left</p>
         <button id="display-country" class="btn btn-outline-light mx-1" type="button">Display country</button>
@@ -33,9 +34,6 @@
         const practiceItems = [[${practiceItems}]];
         const region = [[${region}]];
         const csrfToken = [[${_csrf.token}]];
-        console.log(region);
-        console.log('items from db:');
-        console.log(practiceItems);
     </script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="

@@ -5,6 +5,9 @@ import com.example.atlas.service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -15,10 +18,10 @@ import java.util.List;
 @Component
 public class DataLoader implements ApplicationRunner {
     private @Autowired PracticeService practiceService;
+    private @Autowired UserDetailsManager users;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        addSampleData();
     }
 
     private void addSampleData() {
@@ -35,6 +38,21 @@ public class DataLoader implements ApplicationRunner {
         );
         Collections.addAll(items);
         practiceService.saveAll(items);
+    }
+
+    private void addSampleUsers() {
+        UserDetails user1 = User.withDefaultPasswordEncoder()
+                .username("joe")
+                .password("test")
+                .roles("USER")
+                .build();
+        UserDetails user2 = User.withDefaultPasswordEncoder()
+                .username("frank")
+                .password("test")
+                .roles("USER")
+                .build();
+        users.createUser(user1);
+        users.createUser(user2);
     }
 
 }

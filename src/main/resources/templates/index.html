@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: head"></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+
+    <title>Atlas - Learn maps effectively</title>
+</head>
 <body class="bg-dark text-white">
     <div class="container">
 
         <h1 th:replace="layout :: heading">Atlas</h1>
 
-        <div class="row">
-            <div class="col-lg-6">
-                <img class="img-fluid" src="" alt="planet">
+        <div id="abc" class="mx-auto px-3 pb-3 pt-5"
+             style="max-width: 700px; min-height: 300px; border: 1px solid white; border-radius: 6px;">
+            <h2 class="display-5 text-center">Learn maps <i>effectively</i> with spaced repetition</h2>
+            <hr class="my-4">
+            <p class="text-center">
+                Still haven't learned the location of all countries in the world?<br>
+                Don't worry! Dive right in and learn them once and for all.
+            </p>
+            <hr class="my-4">
+            <div class="d-flex justify-content-center">
+                <a th:href="@{/login}" class="btn btn btn-dark mr-4" type="button">Log in</a>
+                <a th:href="@{/signup}" class="btn btn btn-dark" type="button">Register</a>
             </div>
-
-            <div class="col-lg-6">
-                <div class="jumbotron bg-secondary">
-                    <h2 class="display-5 mb-2">Learn maps <i>effectively</i> with spaced repetition</h2>
-                    <hr class="my-2">
-                    <p>
-                        Still not learned the location of all <i>206 states</i> of the world?<br>
-                        Don't panic! Dive right in and learn them once and for all.
-                    </p>
-                    <div class="d-flex justify-content-center mt-3">
-                        <a th:href="@{/login}" class="btn btn-lg btn-warning mr-4" type="button">Log in</a>
-                        <a th:href="@{/signup}" class="btn btn-lg btn-warning" type="button">Register</a>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
     </div>

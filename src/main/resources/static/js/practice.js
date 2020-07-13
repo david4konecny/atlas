@@ -1,8 +1,5 @@
 import { data } from "./countries-data.js";
 
-// Constants
-const mapUrl = 'mapbox://styles/dheiskdie/ck9gqaprj0knl1io05o41ad01/draft';
-
 // Map properties
 const options = {
     center: region.centerCoordinates,
@@ -21,10 +18,10 @@ const map = L.map('map', options);
 // Load map
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'dheiskdie/ck9gqaprj0knl1io05o41ad01/draft',
+    id: 'd4kd4k/ckciy87gd3if71imq3vwdia8z',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoiZGhlaXNrZGllIiwiYSI6ImNrOWdxNXVqZDA1ZjgzaG13YmQ3bzM2OHAifQ.3AfNGBc9QHBjGU1xNnuy2w'
+    accessToken: 'pk.eyJ1IjoiZDRrZDRrIiwiYSI6ImNrY2l5Y2Q3NjFnYWoycm0yZTc2MXZ5ZncifQ.Q7C8G3Bp_VeN85Qx5S0_xA'
 }).addTo(map);
 
 // Style geojson

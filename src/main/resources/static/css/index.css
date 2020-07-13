@@ -1,0 +1,18 @@
+#abc {
+    position: relative;
+}
+
+#abc:after {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                      url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Banduri%2C_Covens_et_Mortier_and_Lisle._Imperii_Orientalis_et_Circumjacentium_Regionum.1742.jpg/1024px-Banduri%2C_Covens_et_Mortier_and_Lisle._Imperii_Orientalis_et_Circumjacentium_Regionum.1742.jpg");
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    z-index: -1;
+}

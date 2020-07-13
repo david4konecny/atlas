@@ -6,13 +6,14 @@
 
         <h1 th:replace="layout :: heading">Atlas</h1>
 
-        <h2 class="display-5 text-center">Log into your account</h2>
+        <h2 class="display-5 text-center mb-3">Sign up</h2>
 
         <div>
-            <form class="w-50 mx-auto" th:action="@{/signup}" method="post" th:object="${user}">
+            <form class="mx-auto" th:action="@{/signup}" method="post" th:object="${user}"
+                    style="max-width: 250px;">
                 <div class="form-group">
                     <label for="username">Username:</label>
-                    <input th:field="*{username}" class="form-control" type="text" id="username" />
+                    <input th:field="*{username}" class="form-control" type="text" id="username" maxlength="15" />
                     <div th:if="${userAlreadyExists}" style="margin-top: 0.25rem; font-size: 80%; color: white;">
                         Username already exists
                     </div>
@@ -22,14 +23,14 @@
 
                 <div class="form-group mb-5">
                     <label for="password">Password:</label>
-                    <input class="form-control" type="password" id="password" th:field="*{password}">
+                    <input class="form-control" type="password" id="password" th:field="*{password}" maxlength="30">
                     <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                          style="margin-top: 0.25rem; font-size: 80%; color: white;"></div>
                 </div>
 
                 <div class="text-center">
-                    <button class="btn btn-lg btn-success mx-1" type="submit">Register</button>
-                    <a class="btn btn-lg btn-danger mx-1" th:href="@{/}">Cancel</a>
+                    <a class="btn btn-danger mx-1" th:href="@{/}">Cancel</a>
+                    <button class="btn btn-success mx-1" type="submit">Register</button>
                 </div>
 
             </form>

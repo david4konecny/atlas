@@ -226,7 +226,6 @@ public class MapsData {
                 "Swaziland",
                 "Chad",
                 "Togo",
-                "Trinidad and Tobago",
                 "Tunisia",
                 "United Republic of Tanzania",
                 "Uganda",
@@ -271,6 +270,7 @@ public class MapsData {
                 "Peru",
                 "Paraguay",
                 "Suriname",
+                "Trinidad and Tobago",
                 "Uruguay",
                 "Venezuela"
         };

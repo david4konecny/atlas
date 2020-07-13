@@ -1,12 +1,15 @@
 package com.example.atlas.model;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserDto {
-    @NotNull @Size(min = 3, max = 15, message = "Minimum username length: 3")
+    @NotNull @NotBlank(message = "Username is required")
+    @Size(min = 3, max = 15, message = "Minimum username length: 3")
     private String username;
-    @NotNull @Size(min = 4, message = "Minimum password length: 4")
+    @NotNull @NotBlank(message = "Password is required")
+    @Size(min = 4, max = 30, message = "Minimum password length: 4")
     private String password;
 
     public UserDto() {

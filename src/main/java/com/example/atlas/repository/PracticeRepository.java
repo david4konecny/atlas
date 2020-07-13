@@ -13,4 +13,6 @@ public interface PracticeRepository extends JpaRepository<PracticeItem, Long> {
 
     List<PracticeItem> findByUsername(String username);
 
+    void deleteByUsername(String username);
+
 }

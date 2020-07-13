@@ -12,10 +12,7 @@
     <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark text-white mb-3 py-1">
         <div class="container">
             <a class="navbar-brand" th:href="@{/}">Atlas</a>
-            <form th:action="@{/logout}" method="post" class="form-inline">
-                <span class="nav-item mx-3" th:text="${#httpServletRequest.remoteUser}">User</span>
-                <button class="btn btn-outline-light" type="submit">Sign out</button>
-            </form>
+            <a class="btn btn-outline-light" th:href="@{/account}" th:text="${#httpServletRequest.remoteUser}"></a>
         </div>
     </nav>
 

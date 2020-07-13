@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head"></head>
+<body class="bg-dark text-white">
+    <nav th:replace="layout :: nav"></nav>
+
+    <div class="container text-center">
+        <h1 class="display-4 mb-3" th:text="${#httpServletRequest.remoteUser}"></h1>
+
+        <form th:action="@{/logout}" method="post">
+            <button class="btn btn-outline-light mb-1" type="submit">Logout</button>
+        </form>
+
+        <form th:action="@{/deleteUser}" method="post">
+            <button class="btn btn-outline-light" type="submit">Delete account</button>
+        </form>
+    </div>
+
+</body>
+</html>

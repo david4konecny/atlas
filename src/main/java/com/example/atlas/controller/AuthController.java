@@ -15,6 +15,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import java.security.Principal;
+
 import static com.example.atlas.service.UserService.UserAlreadyExistsException;
 
 @Controller
@@ -24,6 +26,11 @@ public class AuthController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @GetMapping("/account")
+    public String account() {
+        return "account";
     }
 
     @GetMapping("/signup")
@@ -53,6 +60,13 @@ public class AuthController {
         }
         request.login(user.getUsername(), user.getPassword());
         return "redirect:/dashboard";
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteUser(HttpServletRequest req, Principal principal) throws ServletException {
+        userService.deleteUser(principal.getName());
+        req.logout();
+        return "redirect:/";
     }
 
 }

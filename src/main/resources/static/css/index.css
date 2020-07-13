@@ -1,8 +1,8 @@
-#abc {
+#map-box {
     position: relative;
 }
 
-#abc:after {
+#map-box:after {
     position: absolute;
     content: "";
     display: block;

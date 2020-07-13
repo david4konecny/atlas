@@ -7,16 +7,14 @@ import java.time.LocalDate;
 
 @Component
 public class SpacingStrategyImpl implements SpacingStrategy {
-    private final int[] scheduleSequence = new int[] {
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-    };
+    private final int memoryStrengthLimit = 10;
 
     @Override
     public void rescheduleCorrectlyAnswered(PracticeItem item) {
-        if (item.getMemoryStrength() < scheduleSequence.length) {
+        if (item.getMemoryStrength() < memoryStrengthLimit) {
             item.setMemoryStrength(item.getMemoryStrength() + 1);
         }
-        int nextReviewInDays = scheduleSequence[item.getMemoryStrength() - 1];
+        int nextReviewInDays = item.getMemoryStrength();
         item.setNextReview(currentDate().plusDays(nextReviewInDays));
     }
 

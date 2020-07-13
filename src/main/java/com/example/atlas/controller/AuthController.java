@@ -1,5 +1,6 @@
 package com.example.atlas.controller;
 
+import com.example.atlas.exception.UserAlreadyExistsException;
 import com.example.atlas.model.UserDto;
 import com.example.atlas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import java.security.Principal;
-
-import static com.example.atlas.service.UserService.UserAlreadyExistsException;
 
 @Controller
 public class AuthController {

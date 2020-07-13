@@ -2,10 +2,12 @@ package com.example.atlas.model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class UserDto {
     @NotNull @NotBlank(message = "Username is required")
+    @Pattern(regexp = "^[a-zA-Z]+[a-zA-Z0-9]*$", message = "Only letters (A-Z) and numbers are allowed")
     @Size(min = 3, max = 15, message = "Minimum username length: 3")
     private String username;
     @NotNull @NotBlank(message = "Password is required")

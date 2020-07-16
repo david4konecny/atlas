@@ -1,9 +1,11 @@
 package com.example.atlas.controller;
 
+import com.example.atlas.exception.RegionNotFoundException;
 import com.example.atlas.model.PracticeItem;
 import com.example.atlas.model.Region;
 import com.example.atlas.service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +28,14 @@ public class PracticeController {
 
     @ResponseBody
     @PostMapping("/practice/item/increment/{id}")
-    public void increaseMemoryStrength(@PathVariable Long id) {
-        practiceService.increaseMemoryStrength(id);
+    public void increaseMemoryStrength(@PathVariable Long id, Principal principal) {
+        practiceService.increaseMemoryStrength(id, principal.getName());
     }
 
     @ResponseBody
     @PostMapping("/practice/item/reset/{id}")
-    public void resetMemoryStrength(@PathVariable Long id) {
-        practiceService.resetMemoryStrength(id);
+    public void resetMemoryStrength(@PathVariable Long id, Principal principal) {
+        practiceService.resetMemoryStrength(id, principal.getName());
     }
 
     @ResponseBody

@@ -8,11 +8,11 @@
         <h1 class="display-4 mb-3" th:text="${#httpServletRequest.remoteUser}"></h1>
 
         <form th:action="@{/logout}" method="post">
-            <button class="btn btn-outline-light mb-1" type="submit">Logout</button>
+            <button class="btn btn-outline-light mb-1" type="submit" style="min-width: 140px;">Logout</button>
         </form>
 
         <form th:action="@{/deleteUser}" method="post">
-            <button class="btn btn-outline-light" type="submit">Delete account</button>
+            <button class="btn btn-outline-light" type="submit" style="min-width: 140px;">Delete account</button>
         </form>
     </div>
 

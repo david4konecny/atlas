@@ -2,9 +2,7 @@ package com.example.atlas.repository;
 
 import com.example.atlas.model.Region;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class MapsData {
     public static final Map<String, Region> REGIONS = new TreeMap<>();
@@ -18,6 +16,17 @@ public class MapsData {
         REGIONS.put("s-america", southAmericaRegion());
         REGIONS.put("oceania", oceaniaRegion());
         REGIONS.forEach((name, region) -> NUM_OF_COUNTRIES_PER_REGION.put(name, region.getNumOfCountries()));
+    }
+
+    public static Collection<String> getRegionNames() {
+        return REGIONS.keySet();
+    }
+
+    public static boolean isCountryInRegion(String country, String regionName) {
+        Region region = REGIONS.get(regionName);
+        if (region != null)
+            return Arrays.asList(region.getCountries()).contains(country);
+        return false;
     }
 
     private static Region europeRegion() {

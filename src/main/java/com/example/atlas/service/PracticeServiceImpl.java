@@ -1,5 +1,6 @@
 package com.example.atlas.service;
 
+import com.example.atlas.exception.RegionNotFoundException;
 import com.example.atlas.model.PracticeItem;
 import com.example.atlas.model.Region;
 import com.example.atlas.repository.MapsData;
@@ -8,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,32 +22,44 @@ public class PracticeServiceImpl implements PracticeService {
     }
 
     public List<PracticeItem> getPracticeByRegion(String username, String region) {
+        if (!MapsData.getRegionNames().contains(region))
+            throw new RegionNotFoundException();
         return practiceRepository.findByUsernameAndRegion(username, region);
     }
 
     public List<PracticeItem> getItemsByRegionSortedByNextReview(String region, String username) {
+        if (!MapsData.getRegionNames().contains(region))
+            throw new RegionNotFoundException();
         return practiceRepository.findByUsernameAndRegionOrderByNextReview(username, region);
     }
 
-    public void increaseMemoryStrength(Long id) {
-        PracticeItem item = practiceRepository.getOne(id);
-        spacingStrategy.rescheduleCorrectlyAnswered(item);
-        practiceRepository.save(item);
+    public void increaseMemoryStrength(Long itemId, String username) {
+        PracticeItem item = practiceRepository.getOne(itemId);
+        if (item.getUsername().equals(username)) {
+            spacingStrategy.rescheduleCorrectlyAnswered(item);
+            practiceRepository.save(item);
+        }
     }
 
-    public void resetMemoryStrength(Long id) {
-        PracticeItem item = practiceRepository.getOne(id);
-        item.setMemoryStrength(0);
-        practiceRepository.save(item);
+    public void resetMemoryStrength(Long itemId, String username) {
+        PracticeItem item = practiceRepository.getOne(itemId);
+        if (item.getUsername().equals(username)) {
+            item.setMemoryStrength(0);
+            practiceRepository.save(item);
+        }
     }
 
     public void addPracticeItem(String username, String country, String region) {
-        PracticeItem item = new PracticeItem(username, country, region);
-        spacingStrategy.rescheduleCorrectlyAnswered(item);
-        practiceRepository.save(item);
+        if (MapsData.isCountryInRegion(country, region)) {
+            PracticeItem item = new PracticeItem(username, country, region);
+            spacingStrategy.rescheduleCorrectlyAnswered(item);
+            practiceRepository.save(item);
+        }
     }
 
     public Region getRegionByName(String region) {
+        if (!MapsData.getRegionNames().contains(region))
+            throw new RegionNotFoundException();
         return MapsData.REGIONS.get(region);
     }
 

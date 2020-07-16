@@ -8,12 +8,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MainControllerTest {
+class MainNavigationControllerTest {
 
     private MockMvc mockMvc;
-    private MainController controller = new MainController();
+    private MainNavigationController controller = new MainNavigationController();
 
     @BeforeEach
     public void setUp() {

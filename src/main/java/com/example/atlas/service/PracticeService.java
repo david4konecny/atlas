@@ -11,8 +11,8 @@ public interface PracticeService {
     void saveAll(List<PracticeItem> items);
     List<PracticeItem> getPracticeByRegion(String username, String region);
     List<PracticeItem> getItemsByRegionSortedByNextReview(String region, String username);
-    void increaseMemoryStrength(Long id);
-    void resetMemoryStrength(Long id);
+    void increaseMemoryStrength(Long itemId, String username);
+    void resetMemoryStrength(Long itemId, String username);
     void addPracticeItem(String username, String country, String region);
     Region getRegionByName(String region);
     Collection<Region> getAllRegions();

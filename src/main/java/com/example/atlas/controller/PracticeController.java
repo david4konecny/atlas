@@ -1,11 +1,9 @@
 package com.example.atlas.controller;
 
-import com.example.atlas.exception.RegionNotFoundException;
 import com.example.atlas.model.PracticeItem;
 import com.example.atlas.model.Region;
 import com.example.atlas.service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +18,7 @@ public class PracticeController {
     @GetMapping("/practice")
     public String practice(@RequestParam String region, Model model, Principal principal) {
         List<PracticeItem> practiceItems = practiceService.getPracticeByRegion(principal.getName(), region);
-        Region regionData = practiceService.getRegionByName(region);
+        Region regionData = practiceService.getRegionById(region);
         model.addAttribute("practiceItems", practiceItems);
         model.addAttribute("region", regionData);
         return "practice";

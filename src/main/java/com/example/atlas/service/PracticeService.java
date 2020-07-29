@@ -14,7 +14,7 @@ public interface PracticeService {
     void increaseMemoryStrength(Long itemId, String username);
     void resetMemoryStrength(Long itemId, String username);
     void addPracticeItem(String username, String country, String region);
-    Region getRegionByName(String region);
+    Region getRegionById(String regionId);
     Collection<Region> getAllRegions();
     String getRegionName(String regionId);
     Map<String, Long> getNumOfItemsForPracticeByRegion(String username);

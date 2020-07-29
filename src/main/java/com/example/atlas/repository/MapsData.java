@@ -4,95 +4,97 @@ import com.example.atlas.model.Region;
 
 import java.util.*;
 
-public class MapsData {
-    public static final Map<String, Region> REGIONS = new TreeMap<>();
-    public static final Map<String, Integer> NUM_OF_COUNTRIES_PER_REGION = new HashMap<>();
+public final class MapsData {
+    private static final Map<String, Region> regions = new TreeMap<>();
+    private static final Map<String, Integer> numOfCountriesPerRegion = new HashMap<>();
 
     static {
-        REGIONS.put("europe", europeRegion());
-        REGIONS.put("asia", asiaRegion());
-        REGIONS.put("africa", africaRegion());
-        REGIONS.put("n-america", northAmericaRegion());
-        REGIONS.put("s-america", southAmericaRegion());
-        REGIONS.put("oceania", oceaniaRegion());
-        REGIONS.forEach((name, region) -> NUM_OF_COUNTRIES_PER_REGION.put(name, region.getNumOfCountries()));
+        regions.put("europe", europeRegion());
+        regions.put("asia", asiaRegion());
+        regions.put("africa", africaRegion());
+        regions.put("n-america", northAmericaRegion());
+        regions.put("s-america", southAmericaRegion());
+        regions.put("oceania", oceaniaRegion());
+        regions.forEach((name, region) -> numOfCountriesPerRegion.put(name, region.getNumOfCountries()));
     }
 
-    public static Collection<String> getRegionNames() {
-        return REGIONS.keySet();
+    private MapsData() {};
+
+    public static Collection<Region> getRegions() {
+        return regions.values();
+    }
+
+    public static Region getRegion(String id) {
+        return regions.get(id);
+    }
+
+    public static Map<String, Integer> getNumberOfCountriesPerRegion() {
+        return numOfCountriesPerRegion;
+    }
+
+    public static Collection<String> getRegionIds() {
+        return regions.keySet();
     }
 
     public static boolean isCountryInRegion(String country, String regionName) {
-        Region region = REGIONS.get(regionName);
+        Region region = regions.get(regionName);
         if (region != null)
             return Arrays.asList(region.getCountries()).contains(country);
         return false;
     }
 
     private static Region europeRegion() {
-        Region region = new Region();
-        region.setId("europe");
-        region.setName("Europe");
-        region.setCountries(europeCountries());
-        region.setCenterCoordinates(new double[] { 49.78, 20.74 });
-        region.setLowerLeftBound(new double[] { 24, -29 });
-        region.setUpperRightBound(new double[] { 74, 65 });
-        return region;
+        return Region.create("europe", "Europe")
+                .countries(europeCountries())
+                .centerCoordinates(new double[] { 49.78, 20.74 })
+                .lowerLeftBound(new double[] { 24, -29 })
+                .upperRightBound(new double[] { 74, 65 })
+                .build();
     }
 
     private static Region asiaRegion() {
-        Region region = new Region();
-        region.setId("asia");
-        region.setName("Asia");
-        region.setCountries(asiaCountries());
-        region.setCenterCoordinates(new double[] { 43.07, 88.24 });
-        region.setLowerLeftBound(new double[] { 2, 15 });
-        region.setUpperRightBound(new double[] { 75, 178 });
-        return region;
+        return Region.create("asia", "Asia")
+                .countries(asiaCountries())
+                .centerCoordinates(new double[] { 43.07, 88.24 })
+                .lowerLeftBound(new double[] { -15, 15 })
+                .upperRightBound(new double[] { 75, 178 })
+                .build();
     }
 
     private static Region africaRegion() {
-        Region region = new Region();
-        region.setId("africa");
-        region.setName("Africa");
-        region.setCountries(africaCountries());
-        region.setCenterCoordinates(new double[] { 0, 21 });
-        region.setLowerLeftBound(new double[] { -48, -32 });
-        region.setUpperRightBound(new double[] { 45, 75 });
-        return region;
+        return Region.create("africa", "Africa")
+                .countries(africaCountries())
+                .centerCoordinates(new double[] { 0, 21 })
+                .lowerLeftBound(new double[] { -48, -32 })
+                .upperRightBound(new double[] { 45, 75 })
+                .build();
     }
 
     private static Region northAmericaRegion() {
-        Region region = new Region();
-        region.setId("n-america");
-        region.setName("North America");
-        region.setCountries(northAmericaCountries());
-        region.setCenterCoordinates(new double[] { 53, -89 });
-        region.setLowerLeftBound(new double[] { -4, -177 });
-        region.setUpperRightBound(new double[] { 85, -25 });
-        return region;
+        return Region.create("n-america", "North America")
+                .countries(northAmericaCountries())
+                .centerCoordinates(new double[] { 53, -89 })
+                .lowerLeftBound(new double[] { -4, -177 })
+                .upperRightBound(new double[] { 85, -25 })
+                .build();
     }
 
     private static Region southAmericaRegion() {
-        Region region = new Region();
-        region.setId("s-america");
-        region.setName("South America");
-        region.setCountries(southAmericaCountries());
-        region.setCenterCoordinates(new double[] { -26, -57 });
-        region.setLowerLeftBound(new double[] { -65, -125 });
-        region.setUpperRightBound(new double[] { 21, 2 });
-        return region;
+        return Region.create("s-america", "South America")
+                .countries(southAmericaCountries())
+                .centerCoordinates(new double[] { -26, -57 })
+                .lowerLeftBound(new double[] { -65, -125 })
+                .upperRightBound(new double[] { 21, 2 })
+                .build();
     }
 
     private static Region oceaniaRegion() {
-        Region region = new Region();
-        region.setId("oceania");
-        region.setName("Oceania");
-        region.setCountries(oceaniaCountries());
-        region.setCenterCoordinates(new double[] { -24, 140 });
-        region.setLowerLeftBound(new double[] { -54, 83 });
-        region.setUpperRightBound(new double[] { 35, 179 });
-        return region;
+        return Region.create("oceania", "Oceania")
+                .countries(oceaniaCountries())
+                .centerCoordinates(new double[] { -24, 140 })
+                .lowerLeftBound(new double[] { -54, 83 })
+                .upperRightBound(new double[] { 35, 179 })
+                .build();
     }
 
     private static String[] europeCountries() {
@@ -152,6 +154,7 @@ public class MapsData {
                 "Bangladesh",
                 "Brunei",
                 "Bhutan",
+                "Cambodia",
                 "China",
                 "Georgia",
                 "India",
@@ -210,7 +213,6 @@ public class MapsData {
                 "Guinea Bissau",
                 "Equatorial Guinea",
                 "Kenya",
-                "Cambodia",
                 "Liberia",
                 "Libya",
                 "Lesotho",
@@ -223,7 +225,6 @@ public class MapsData {
                 "Namibia",
                 "Niger",
                 "Nigeria",
-                "Papua New Guinea",
                 "Rwanda",
                 "Western Sahara",
                 "Sudan",
@@ -291,6 +292,7 @@ public class MapsData {
                 "Indonesia",
                 "Malaysia",
                 "New Zealand",
+                "Papua New Guinea",
                 "Philippines"
         };
     }

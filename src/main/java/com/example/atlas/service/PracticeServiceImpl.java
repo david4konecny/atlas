@@ -22,13 +22,13 @@ public class PracticeServiceImpl implements PracticeService {
     }
 
     public List<PracticeItem> getPracticeByRegion(String username, String region) {
-        if (!MapsData.getRegionNames().contains(region))
+        if (!MapsData.getRegionIds().contains(region))
             throw new RegionNotFoundException();
         return practiceRepository.findByUsernameAndRegion(username, region);
     }
 
     public List<PracticeItem> getItemsByRegionSortedByNextReview(String region, String username) {
-        if (!MapsData.getRegionNames().contains(region))
+        if (!MapsData.getRegionIds().contains(region))
             throw new RegionNotFoundException();
         return practiceRepository.findByUsernameAndRegionOrderByNextReview(username, region);
     }
@@ -57,24 +57,24 @@ public class PracticeServiceImpl implements PracticeService {
         }
     }
 
-    public Region getRegionByName(String region) {
-        if (!MapsData.getRegionNames().contains(region))
+    public Region getRegionById(String regionId) {
+        if (!MapsData.getRegionIds().contains(regionId))
             throw new RegionNotFoundException();
-        return MapsData.REGIONS.get(region);
+        return MapsData.getRegion(regionId);
     }
 
     public Collection<Region> getAllRegions() {
-        return MapsData.REGIONS.values();
+        return MapsData.getRegions();
     }
 
     public String getRegionName(String regionId) {
-        return MapsData.REGIONS.get(regionId).getName();
+        return MapsData.getRegion(regionId).getName();
     }
 
     public Map<String, Long> getNumOfItemsForPracticeByRegion(String username) {
         Map<String, Long> res = new HashMap<>();
         List<PracticeItem> practiceItems = practiceRepository.findByUsername(username);
-        Map<String, Integer> all = MapsData.NUM_OF_COUNTRIES_PER_REGION;
+        Map<String, Integer> all = MapsData.getNumberOfCountriesPerRegion();
         Map<String, Long> due = getNumOfDuePerRegion(practiceItems);
         Map<String, Long> practiced = getNumOfPracticedPerRegion(practiceItems);
         all.forEach((name, total) -> {
